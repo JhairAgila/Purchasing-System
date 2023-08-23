@@ -29,7 +29,7 @@ const productSlice = createSlice({
             state.isFetching = false;
         },
         updateProductSuccess : (state, action) => {
-            let index = state.products.findIndex( (product) => product._id == action.payload._id );
+            let index = state.products.findIndex( (product) => product._id === action.payload._id );
             state.products.splice(index, 1, action.payload);
             state.isFetching = false;
         },

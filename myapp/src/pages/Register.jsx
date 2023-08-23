@@ -75,7 +75,7 @@ function Register(){
         e.preventDefault();
         if(user.username !== '' && user.email !== '' && user.password !== ''){
             createUser(dispatch, user);
-            // alert('Usuario creado');
+            alert('Usuario creado');
             navigate('/');
         }else{
             alert('Complete todos los campos');

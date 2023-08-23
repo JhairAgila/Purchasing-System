@@ -12,8 +12,10 @@ router.post("/register", async (req, res) => {
             req.body.password, process.env.PASSWORD_SECRET
             ).toString(),
     });
+    //controller
     try{
         const saveUser = await newUser.save();
+        console.log(saveUser);
         res.status(201).json(saveUser);
     }catch(error){
         res.status(500).json(error);
@@ -33,15 +35,15 @@ router.post("/login", async (req, res) => {
         passwordCaptured !== req.body.password && 
             res.status(401).json("Wrong credentials!");
         const accessToken = jwt.sign( 
-            { 
+            {
                 id: user._id,
                 isAdmin: user.isAdmin,
             },
             process.env.JST_SECRET_KEY,
-            {expiresIn: "3d"}   
+            {expiresIn: "3d"}
         );
         const {password, ...others} = user._doc;
-        res.status(201).json({...others, accessToken });
+        res.status(201).json({ ...others, accessToken });
     }catch(error){
         // res.status(500).json(error);
     }

@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import { deleteProduct } from './cartRedux';
+// import { deleteProduct } from './cartRedux';
 
 const wishListProductSlice = createSlice({
     name: 'wishListProducts',

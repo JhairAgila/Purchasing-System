@@ -158,15 +158,6 @@ const SummaryTitle = styled.h1`
   font-weight: 200;
 `;
 
-// const SummaryButtom = styled.button`
-//   width: 100%;
-//   color: white;
-//   padding: 10px;
-//   background-color: black;
-//   font-weight: 600;
-//   cursor: pointer;
-// `;
-
 const Hr = styled.hr`
   background-color: #eee;
   border: none;
@@ -188,7 +179,6 @@ const ProductDelete = styled.div`
 `
 function Cart() {
   const [ stripeToken, setStripeToken] = useState(null);
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const {currentUser} = useSelector( state => state.user)
   const { products, total} = useSelector( state => state.cart);
@@ -203,6 +193,7 @@ function Cart() {
   const onToken = (token) => {
     setStripeToken(token);
   }
+
   const handeleteProduct = (id, price, quantityProduct) => {
     let totalProduct = price * quantityProduct;
     dispatch(deleteProduct({id, totalProduct}));
@@ -210,7 +201,7 @@ function Cart() {
 
   const handleCompra = () => {
     let billProducts = [];
-    products.map( (product) => 
+    products.map( (product) =>
       {productsState.map( (productState) => 
         {
           if(product._id === productState._id){
@@ -221,7 +212,6 @@ function Cart() {
             updateProduct(dispatch, productModified);
           } 
         })});
-    console.log(billProducts)
     setBill({
       ...bill,
       products: billProducts,
@@ -243,7 +233,6 @@ function Cart() {
         }
     }
     stripeToken && makeRequest();
-    // stripeToken &&  makeRequest() && navigate('/success');
 }, [stripeToken, total]);
 
   return (

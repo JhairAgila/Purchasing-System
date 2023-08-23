@@ -6,8 +6,10 @@ import { Failure, deleteUserSuccess, Start, loginSuccess, logoutSuccess, updateU
 const createUser = async(dispatch, user) => {
 
     dispatch(Start());
+    console.log('object');
     try {
-        await publicRequest.post('/auth/register', user);
+       const {data} =  await publicRequest.post('/auth/register', user);
+        console.log(data);
         dispatch(createUserSuccess(user));
         login(dispatch, {username: user.username, password: user.password})
         // alert('Usuario creado');
@@ -73,7 +75,7 @@ const getUsersDB = async(dispatch) => {
 const deleteUser = async(dispatch, id) => {
     try {
         dispatch(Start());
-        const res = await userRequest.delete(`/users/${id}`);
+        await userRequest.delete(`/users/${id}`);
         dispatch(deleteUserSuccess(id));
     } catch (error) {
         

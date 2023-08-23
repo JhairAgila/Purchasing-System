@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { mobile } from '../responsive';
 import { login } from '../redux/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useLocation, useNavigate, Link  } from 'react-router-dom';
+import {  useNavigate, Link  } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
 
 const Container = styled.div`
@@ -69,30 +69,30 @@ const Buttom = styled.button`
 //     cursor: pointer;
 //     margin-bottom: 10px;
 //     `;
-const Error = styled.span`
-    color: red;
-    `
+// const Error = styled.span`
+//     color: red;
+//     `
 
 function Login(){
     const [username, setUserName] = useState('');
     const[password, setPassword] = useState('');
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
 
-    const {isFetching, error, currentUser} = useSelector( (state) => state.user);
+    const { currentUser} = useSelector( (state) => state.user);
 
-    const handleLogin = (e) => ( 
-        e.preventDefault(),
+    const handleLogin = (e) => { 
+        e.preventDefault();
         // let from = -1;
         // let from = location.state?.from?.pathname || -1;
-        login(dispatch, {username, password}),
+        login(dispatch, {username, password});
         // dispatch(login({username, password})),
         // navigate(from, {replace: true});
         // console.log(`dentro de ${currentUser.isAdmin}`),
-        currentUser.isAdmin == true ? navigate('/adminProducts') : navigate('/')
-    );
+        return currentUser == null ? navigate('/') : currentUser.isAdmin ?  navigate('/adminProducts') :  navigate('/');
+    }
 
     return (
         <Container>
@@ -115,7 +115,6 @@ function Login(){
                 </Wrapper>
         </Container>
     );
-
 }
 
 export {Login};
