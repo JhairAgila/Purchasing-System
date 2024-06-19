@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  #Tiene 2 servicios: Backend-Frontend
+  backend:
+    #Lugar donde esta el dockerFile
+    build:
+      context: ./eccommerceAPI
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./myapp
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
