@@ -4,6 +4,8 @@ services:
   #Tiene 2 servicios: Backend-Frontend
   backend:
     #Lugar donde esta el dockerFile
+    # image: 127.0.0.1:6000/ecommerce
+    # build: .
     build:
       context: ./eccommerceAPI
       dockerfile: Dockerfile
