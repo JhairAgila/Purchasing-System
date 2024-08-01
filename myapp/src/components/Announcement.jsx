@@ -16,7 +16,7 @@ function Announcement() {
     
     return(
         <Container>
-            It's announcements !!
+            It's announcementssssssssssssssssssssss !!
         </Container>
     );
 }
